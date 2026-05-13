@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LakkzDev | Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">L<span>.</span></div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+      <div class="loader-text" id="loaderText">Initializing system...</div>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">lakkz<span>dev</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="likkz.html" class="nav-link">Likkz</a></li>
+      <li><a href="optimize.html" class="nav-link">Optimize</a></li>
+      <li class="has-dropdown">
+        <a href="tools.html" class="nav-link">Tools <span class="arrow">▾</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="hash.html">🔐 Hash Generator</a></li>
+          <li><a href="password.html">🛡️ Password Generator</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+      <canvas id="particleCanvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">⚡ Developer Tools Suite</div>
+      <h1 class="hero-title reveal">
+        <span class="line1">LAKKZ</span>
+        <span class="line2">DEV</span>
+      </h1>
+      <p class="hero-sub reveal">Built for developers. Optimized for speed. Designed to inspire.</p>
+      <div class="hero-btns reveal">
+        <a href="tools.html" class="btn btn-primary">Explore Tools <span>→</span></a>
+        <a href="optimize.html" class="btn btn-ghost">Optimize Now</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><span class="stat-num" data-target="12">0</span><span class="unit">+</span><p>Tools</p></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num" data-target="99">0</span><span class="unit">%</span><p>Uptime</p></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num" data-target="500">0</span><span class="unit">+</span><p>Users</p></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="code-card">
+        <div class="code-header">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="code-fname">lakkzdev.js</span>
+        </div>
+        <div class="code-body">
+          <div class="code-line"><span class="kw">const</span> <span class="vr">dev</span> <span class="op">=</span> <span class="st">"lakkz"</span><span class="op">;</span></div>
+          <div class="code-line"><span class="kw">const</span> <span class="vr">tools</span> <span class="op">= [</span></div>
+          <div class="code-line pad"><span class="st">"hashGen"</span><span class="op">,</span></div>
+          <div class="code-line pad"><span class="st">"passGen"</span><span class="op">,</span></div>
+          <div class="code-line pad"><span class="st">"optimizer"</span><span class="op">,</span></div>
+          <div class="code-line pad"><span class="st">"likkz"</span></div>
+          <div class="code-line"><span class="op">];</span></div>
+          <div class="code-line"><span class="kw">export default</span> <span class="vr">tools</span><span class="op">;</span><span class="blink-cur">▋</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="section-label">// What I build</div>
+    <h2 class="section-title">Tools that <span>matter</span></h2>
+    <div class="features-grid">
+      <a href="likkz.html" class="feature-card" style="--i:0">
+        <div class="feature-icon">🎮🕹️</div>
+        <h3>Gaming Support</h3>
+        <p>Boost your gaming performance with our optimized tools and settings.</p>
+        <span class="feature-tag">Fps</span>
+        <div class="card-glow"></div>
+      </a>
+      <a href="optimize.html" class="feature-card" style="--i:1">
+        <div class="feature-icon">⚡</div>
+        <h3>Optimize</h3>
+        <p>Performance optimization tools for code, images, and web assets instantly.</p>
+        <span class="feature-tag">Speed</span>
+        <div class="card-glow"></div>
+      </a>
+      <a href="hash.html" class="feature-card" style="--i:2">
+        <div class="feature-icon">🔐</div>
+        <h3>Hash Generator</h3>
+        <p>Generate MD5, SHA-1, SHA-256, SHA-512 hashes instantly in your browser.</p>
+        <span class="feature-tag">Security</span>
+        <div class="card-glow"></div>
+      </a>
+      <a href="password.html" class="feature-card" style="--i:3">
+        <div class="feature-icon">🛡️</div>
+        <h3>Password Generator</h3>
+        <p>Create cryptographically secure passwords with fully customizable rules.</p>
+        <span class="feature-tag">Security</span>
+        <div class="card-glow"></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-inner">
+      <div class="about-text">
+        <div class="section-label">// About me</div>
+        <h2>Hi, I'm <span>Lakshan </span></h2>
+        <p>I'm a fucking developer , atal ekat hutto site ekak haduwe Ai walin haduwe baya wenna epa HTTP !!!.</p>
+        <div class="about-tags">
+          <span>JavaScript</span><span>Python</span><span>React</span><span>Node.js</span><span>DevTools</span>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-avatar">
+          <div class="avatar-ring"></div>
+          <div class="avatar-inner">L<span>.</span></div>
+        </div>
+        <div class="about-info">
+          <div class="info-row"><span>Name</span><strong>Lakshan Nimsara</strong></div>
+          <div class="info-row"><span>Role</span><strong>Atal ekat site hadanw mn</strong></div>
+          <div class="info-row"><span>Focus</span><strong>Pare pare hadawate</strong></div>
+          <div class="info-row"><span>Status</span><strong class="s-green">● Available</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">lakkz<span>dev</span></div>
+      <p>Built with ❤️ by Lakkz Dev · All tools run in your browser · 2025</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="likkz.html">Likkz</a>
+        <a href="optimize.html">Optimize</a>
+        <a href="tools.html">Tools</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

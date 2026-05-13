@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LakkzDev | Optimizer Pro</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --accent-glow: rgba(124, 58, 237, 0.5);
+    }
+
+    body {
+      background: var(--bg);
+      background-image: 
+        linear-gradient(rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Hero Section */
+    .opt-content {
+      flex: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .opt-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      background: linear-gradient(to bottom, #fff 40%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    /* Introduction Section */
+    .intro-box {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 35px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-box h3 {
+      font-family: var(--font-display);
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    #typing-text {
+      font-family: var(--font-mono);
+      color: var(--text2);
+      line-height: 1.8;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* Result Section */
+    .result-box {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .copy-btn-v4 {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+    }
+
+    .copy-btn-v4:hover {
+      transform: scale(1.05) translateY(-3px);
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.5);
+    }
+
+    .code-area {
+      background: #050508;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 25px;
+      height: auto;
+      min-height: 120px;
+    }
+
+    #optimizedOutput {
+      font-family: var(--font-mono);
+      color: #4ade80;
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    /* Home Button Animation */
+    .home-nav {
+      margin-top: 50px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .btn-home-v4 {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.4s;
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-home-v4:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+      transform: translateX(-5px);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* PowerShell Cursor */
+    #typing-text::after {
+      content: '_';
+      animation: blink 0.8s infinite;
+      color: var(--accent);
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+  </style>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">L<span>.</span></div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+      <div class="loader-text" id="loaderText">Deploying Optimizer...</div>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">lakkz<span>dev</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="likkz.html" class="nav-link">Likkz</a></li>
+      <li><a href="optimize.html" class="nav-link active">Optimize</a></li>
+      <li><a href="tools.html" class="nav-link">Tools</a></li>
+    </ul>
+  </nav>
+
+  <main class="opt-content">
+    <header class="opt-hero reveal">
+      <h1>OPTIMIZER</h1>
+    </header>
+
+    <section class="intro-box reveal">
+      <h3><i class="fas fa-terminal"></i> Terminal System Initialization</h3>
+      <p id="typing-text"></p>
+    </section>
+
+    <section class="result-box reveal">
+      <div class="result-header">
+        <h2 style="font-family: var(--font-display); font-size: 1.2rem;">Optimization Module</h2>
+        <button class="copy-btn-v4" id="copyBtn" onclick="copyCode()">Copy Command</button>
+      </div>
+      
+      <div class="code-area">
+        <pre id="optimizedOutput">
+irm https://bit.ly/lakadev-optimize | iex</pre>
+      </div>
+    </section>
+
+    <div class="home-nav reveal">
+      <a href="index.html" class="btn-home-v4">
+        <i class="fas fa-house"></i> Back to Control Center
+      </a>
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+  <script>
+    // Typing Effect Logic
+    const introStr = "Boost your system performance instantly with this module. Just copy the command below and paste it into PowerShell (Run as Administrator). Hit enter to launch the LAKSHAN Dev Optimizer and optimize your PC.";
+    const typingBox = document.getElementById('typing-text');
+    let i = 0;
+
+    function startTyping() {
+      if (i < introStr.length) {
+        typingBox.innerHTML += introStr.charAt(i);
+        i++;
+        setTimeout(startTyping, 25);
+      }
+    }
+
+    // Loader එක ඉවර වුණාම ලෝඩර් එක අයින් කරලා ටයිපින් පටන් ගන්න
+    window.addEventListener('load', () => {
+      const checkLoader = setInterval(() => {
+        const loader = document.getElementById('loader');
+        if (loader.classList.contains('hide')) {
+          clearInterval(checkLoader);
+          setTimeout(startTyping, 500);
+        }
+      }, 100);
+    });
+
+    function copyCode() {
+      const text = document.getElementById('optimizedOutput').textContent;
+      const btn = document.getElementById('copyBtn');
+      navigator.clipboard.writeText(text).then(() => {
+        btn.innerHTML = '✓ Copied!';
+        btn.style.background = '#4ade80';
+        setTimeout(() => {
+          btn.innerHTML = 'Copy Command';
+          btn.style.background = 'var(--accent)';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

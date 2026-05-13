@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LakkzDev | Tools</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">L<span>.</span></div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+      <div class="loader-text" id="loaderText">Loading Tools...</div>
+    </div>
+  </div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">lakkz<span>dev</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="likkz.html" class="nav-link">Likkz</a></li>
+      <li><a href="optimize.html" class="nav-link">Optimize</a></li>
+      <li class="has-dropdown">
+        <a href="tools.html" class="nav-link active">Tools <span class="arrow">▾</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="hash.html">🔐 Hash Generator</a></li>
+          <li><a href="password.html">🛡️ Password Generator</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-header">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+    </div>
+    <div class="page-header-content">
+      <div class="section-label">// Developer Toolkit</div>
+      <h1>All <span>Tools</span></h1>
+      <p>A collection of powerful browser-based developer utilities.</p>
+    </div>
+  </div>
+
+  <section class="tools-grid-section">
+    <div class="tools-grid">
+      <a href="hash.html" class="tool-card feature-card" style="--i:0">
+        <div class="feature-icon">🔐</div>
+        <h3>Hash Generator</h3>
+        <p>Generate MD5, SHA-1, SHA-256, SHA-512 cryptographic hashes instantly from any text input — all in your browser.</p>
+        <span class="feature-tag">Security</span>
+        <div class="card-glow"></div>
+      </a>
+      <a href="password.html" class="tool-card feature-card" style="--i:1">
+        <div class="feature-icon">🛡️</div>
+        <h3>Password Generator</h3>
+        <p>Create strong, customizable passwords with uppercase, numbers, symbols. Includes strength meter and bulk generation.</p>
+        <span class="feature-tag">Security</span>
+        <div class="card-glow"></div>
+      </a>
+      
+      <a href="likkz.html" class="tool-card feature-card" style="--i:3">
+        <div class="feature-icon">🎮🕹️</div>
+        <h3> Gaming Support</h3>
+        <p>Boost your gaming performance with our optimized tools and settings.</p>
+        <span class="feature-tag">Fps</span>
+        <div class="card-glow"></div>
+      </a>
+      <div class="tool-card feature-card" style="--i:4;opacity:0.5;cursor:default">
+        <div class="feature-icon">🎨</div>
+        <h3>Color Palette</h3>
+        <p>Generate beautiful color palettes from any hex code. Coming soon...</p>
+        <span class="feature-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;border-color:rgba(245,158,11,0.3)">Coming Soon</span>
+      </div>
+      <div class="tool-card feature-card" style="--i:5;opacity:0.5;cursor:default">
+        <div class="feature-icon">📐</div>
+        <h3>Regex Tester</h3>
+        <p>Test and debug regular expressions with live highlighting. Coming soon...</p>
+        <span class="feature-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;border-color:rgba(245,158,11,0.3)">Coming Soon</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">lakkz<span>dev</span></div>
+      <p>Built with ❤️ by Lakkz Dev · All tools run in your browser · 2025</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a><a href="likkz.html">Likkz</a>
+        <a href="optimize.html">Optimize</a><a href="tools.html">Tools</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

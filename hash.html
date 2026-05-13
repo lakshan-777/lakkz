@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LakkzDev | Hash Generator</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">L<span>.</span></div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+      <div class="loader-text" id="loaderText">Loading Hash Engine...</div>
+    </div>
+  </div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">lakkz<span>dev</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="likkz.html" class="nav-link">Likkz</a></li>
+      <li><a href="optimize.html" class="nav-link">Optimize</a></li>
+      <li class="has-dropdown">
+        <a href="tools.html" class="nav-link active">Tools <span class="arrow">▾</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="hash.html">🔐 Hash Generator</a></li>
+          <li><a href="password.html">🛡️ Password Generator</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-header">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow glow-1"></div>
+    </div>
+    <div class="page-header-content">
+      <div class="section-label">// Cryptography</div>
+      <h1>Hash <span>Generator</span></h1>
+      <p>Generate MD5, SHA-1, SHA-256, SHA-512 hashes instantly.</p>
+    </div>
+  </div>
+
+  <section class="tool-section">
+    <div class="tool-box">
+      <h2>🔐 Hash Generator</h2>
+      <div class="input-group">
+        <label>INPUT TEXT OR DATA</label>
+        <textarea class="tool-textarea" id="hashInput" placeholder="Type or paste any text here to generate hashes..." oninput="autoHash()"></textarea>
+      </div>
+      <div class="input-group">
+        <label>ALGORITHM</label>
+        <select class="tool-select" id="hashAlgo">
+          <option value="SHA-1">SHA-1</option>
+          <option value="SHA-256" selected>SHA-256</option>
+          <option value="SHA-384">SHA-384</option>
+          <option value="SHA-512">SHA-512</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>OUTPUT FORMAT</label>
+        <div class="check-group">
+          <label class="check-label">
+            <input type="radio" name="fmt" value="hex" checked onchange="autoHash()"> Hexadecimal
+          </label>
+          <label class="check-label">
+            <input type="radio" name="fmt" value="b64" onchange="autoHash()"> Base64
+          </label>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="tool-btn primary" onclick="generateHash()">Generate Hash 🔐</button>
+        <button class="tool-btn ghost" onclick="clearHash()">Clear</button>
+      </div>
+
+      <div id="hashResults" style="margin-top:1.5rem"></div>
+    </div>
+
+    <div class="tool-box" style="margin-top:2rem">
+      <h2>📄 All Hashes at Once</h2>
+      <div class="input-group">
+        <textarea class="tool-textarea" id="allHashInput" placeholder="Paste text to generate all hash types at once..."></textarea>
+      </div>
+      <button class="tool-btn primary" onclick="generateAllHashes()">Generate All 🚀</button>
+      <div id="allHashResults" style="margin-top:1.5rem"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">lakkz<span>dev</span></div>
+      <p>Built with ❤️ by Lakkz Dev · All tools run in your browser · 2025</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a><a href="likkz.html">Likkz</a>
+        <a href="optimize.html">Optimize</a><a href="tools.html">Tools</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    async function hashText(text, algo) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest(algo, data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function hashToBase64(text, algo) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest(algo, data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return btoa(String.fromCharCode(...hashArray));
+    }
+
+    let autoTimer;
+    function autoHash() { clearTimeout(autoTimer); autoTimer = setTimeout(generateHash, 300); }
+
+    async function generateHash() {
+      const text = document.getElementById('hashInput').value;
+      const algo = document.getElementById('hashAlgo').value;
+      const fmt = document.querySelector('input[name="fmt"]:checked').value;
+      if (!text.trim()) { document.getElementById('hashResults').innerHTML = ''; return; }
+      const result = fmt === 'hex' ? await hashText(text, algo) : await hashToBase64(text, algo);
+      document.getElementById('hashResults').innerHTML = `
+        <div class="result-box">
+          <div class="result-label">${algo} (${fmt === 'hex' ? 'Hex' : 'Base64'})</div>
+          <div class="result-value" id="singleHash" style="font-size:0.8rem;word-break:break-all">${result}</div>
+          <button class="copy-btn" onclick="copyEl('singleHash')">Copy</button>
+        </div>
+        <div style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--text2)">
+          Length: ${result.length} chars · Input: ${text.length} chars
+        </div>
+      `;
+    }
+
+    async function generateAllHashes() {
+      const text = document.getElementById('allHashInput').value;
+      if (!text.trim()) { alert('Please enter some text'); return; }
+      const algos = ['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512'];
+      const results = await Promise.all(algos.map(a => hashText(text, a)));
+      document.getElementById('allHashResults').innerHTML = algos.map((a, i) => `
+        <div class="result-box" style="margin-bottom:0.75rem">
+          <div class="result-label">${a}</div>
+          <div class="result-value" id="hash_${i}" style="font-size:0.75rem;word-break:break-all">${results[i]}</div>
+          <button class="copy-btn" onclick="copyEl('hash_${i}')">Copy</button>
+        </div>
+      `).join('');
+    }
+
+    function clearHash() {
+      document.getElementById('hashInput').value = '';
+      document.getElementById('hashResults').innerHTML = '';
+    }
+
+    function copyEl(id) {
+      navigator.clipboard.writeText(document.getElementById(id).textContent);
+      const btn = event.target;
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    }
+  </script>
+</body>
+</html>

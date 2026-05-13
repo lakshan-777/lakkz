@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LakkzDev | Gaming Support</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Full Page Background with Grid */
+    body {
+      background: var(--bg);
+      background-image: 
+        linear-gradient(rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gaming-content {
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 20px 80px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      background: linear-gradient(to bottom, #fff 40%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    /* Introduction Typing Box */
+    .intro-box {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 30px;
+      border-radius: 24px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 50px;
+      min-height: 120px;
+    }
+
+    .intro-box h3 {
+      font-family: var(--font-display);
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+    }
+
+    #typing-text {
+      font-family: var(--font-mono);
+      color: var(--text2);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    #typing-text::after {
+      content: '_';
+      animation: blink 0.8s infinite;
+      color: var(--accent);
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Game Selection Grid */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      width: 100%;
+    }
+
+    .game-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 50px 30px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .game-card i {
+      font-size: 3.5rem;
+      margin-bottom: 25px;
+      display: block;
+    }
+
+    /* Game Theme Colors */
+    .fa-fire { color: #ff4b2b; text-shadow: 0 0 20px rgba(255, 75, 43, 0.3); }
+    .fa-crosshairs { color: #ff4655; text-shadow: 0 0 20px rgba(255, 70, 85, 0.3); }
+    .fa-helmet-safety { color: #f39c12; text-shadow: 0 0 20px rgba(243, 156, 18, 0.3); }
+
+    .game-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .game-card p {
+      font-family: var(--font-mono);
+      color: var(--text2);
+      font-size: 0.9rem;
+    }
+
+    /* Home Button Floating */
+    .home-nav {
+      margin-top: 80px;
+      animation: floatBtn 3s ease-in-out infinite;
+    }
+
+    .btn-home-gaming {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.4s;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-home-gaming:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+      transform: scale(1.05);
+    }
+
+    @keyframes floatBtn {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">L<span>.</span></div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+      <div class="loader-text" id="loaderText">Initializing Gaming Engine...</div>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">lakkz<span>dev</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="likkz.html" class="nav-link active">Gaming Support</a></li>
+      <li><a href="optimize.html" class="nav-link">Optimize</a></li>
+      <li><a href="tools.html" class="nav-link">Tools</a></li>
+    </ul>
+  </nav>
+
+  <main class="gaming-content">
+    <header class="reveal">
+      <h1 class="hero-title">GAMING SUPPORT</h1>
+    </header>
+
+    <section class="intro-box reveal">
+      <h3><i class="fas fa-microchip"></i> System Message</h3>
+      <p id="typing-text"></p>
+    </section>
+
+    <div class="game-grid">
+      <a href="C:\Users\Lakshan\Downloads\New folder\games\freefire.html" class="game-card reveal">
+        <i class="fas fa-fire"></i>
+        <h3>FREE FIRE</h3>
+        <p>Sensitivity, Macros & Optimization</p>
+      </a>
+
+      <a href="\gamesvalorant.html" class="game-card reveal" style="transition-delay: 0.1s;">
+        <i class="fas fa-crosshairs"></i>
+        <h3>VALORANT</h3>
+        <p>Aim Guides, Fixes & Pro Settings</p>
+      </a>
+
+      <a href="pubg.html" class="game-card reveal" style="transition-delay: 0.2s;">
+        <i class="fas fa-helmet-safety"></i>
+        <h3>PUBG PC</h3>
+        <p>Performance Boost & Graphics Fix</p>
+      </a>
+    </div>
+
+    <div class="home-nav reveal">
+      <a href="index.html" class="btn-home-gaming">
+        <i class="fas fa-house"></i>
+        <span>Return to Control Center</span>
+      </a>
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+  <script>
+    // Typing Effect
+    const introText = "Welcome to the LakkzDev Gaming Support module. Select your game to access exclusive optimization tools, sensitivity settings, and performance guides designed to give you the competitive edge.";
+    const typingElement = document.getElementById('typing-text');
+    let index = 0;
+
+    function startTyping() {
+      if (index < introText.length) {
+        typingElement.innerHTML += introText.charAt(index);
+        index++;
+        setTimeout(startTyping, 25);
+      }
+    }
+
+    // Wait for loader to finish
+    window.addEventListener('load', () => {
+      const checkLoader = setInterval(() => {
+        const loader = document.getElementById('loader');
+        if (loader && loader.classList.contains('hide')) {
+          clearInterval(checkLoader);
+          setTimeout(startTyping, 600);
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>
